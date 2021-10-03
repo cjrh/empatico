@@ -184,8 +184,8 @@ By default, a rich array of emotional labels is provided:
       }
     ]
 
-Default labels
---------------
+Default labels (and reporting threshold)
+----------------------------------------
 
 You can also control the cutoff threshold for reporting. Here we set it to zero,
 which disables the filter. This shows all the default hypotheses (which are 
@@ -333,6 +333,13 @@ The underlying technique for using natural language inference for classification
 was described by Joe Davison here: 
 
 https://joeddav.github.io/blog/2020/05/29/ZSL.html
+
+The underlying idea is that, instead of using a model specifically trained for
+binary, ternary, or n-ary classification, we might instead try to use a model
+designed for *inference* and test whether a particular hypothesis is supported
+by a piece of text. This dramatically expands the scope of possible labels 
+to apply to a given piece of text, and you don't need the model to have been
+specifally trained for those labels either.
 
 The model being used in the code is 
 `facebook/bart-large-mnli <https://huggingface.co/facebook/bart-large-mnli>`_.
