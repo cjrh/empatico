@@ -23,33 +23,40 @@ def prob(premise, hypothesis):
     # print(f'Probability that the label is true: {true_prob:0.2f}%')
     return true_prob
 
-# pose sequence as a NLI premise and label (politics) as a hypothesis
-premise = sys.argv[1]
-hypotheses = dict(
-        positive='This text is happy.',
-        negative='This text is unhappy.',
-        mixed='This text is both happy and unhappy.',
-        satisfied='This text is about satisfaction.',
-        neutral1='This text is neither happy nor unhappy.',
-        neutral2='This text is emotionless.',
-        neutral3='This text is neutral.',
-        factual='This text is factual.',
-        anger='This text is angry.',
-        sadness='This text is sad.',
-        disappointment='This text is about disappointment.',
-        bitter='This text is bitter.',
-        sarcastic='This text is sarcastic.',
-        helpful='This text is helpful.',
-        fear='This text is afraid.',
-        disgust='This text is disgusted.',
-        surprise='This text is surprised.',
-        hope='This text is hopeful.',
-        trust='This text is trusting.',
-        joy='This text is joyful.',
-)
+def detect_emotions(text: str, report_threshold: float = 80.0) -> list:
+    hypotheses = dict(
+            positive='This text is happy.',
+            negative='This text is unhappy.',
+            mixed='This text is both happy and unhappy.',
+            satisfied='This text is about satisfaction.',
+            neutral1='This text is neither happy nor unhappy.',
+            neutral2='This text is emotionless.',
+            neutral3='This text is neutral.',
+            factual='This text is factual.',
+            anger='This text is angry.',
+            sadness='This text is sad.',
+            disappointment='This text is about disappointment.',
+            bitter='This text is bitter.',
+            sarcastic='This text is sarcastic.',
+            helpful='This text is helpful.',
+            fear='This text is afraid.',
+            disgust='This text is disgusted.',
+            surprise='This text is surprised.',
+            hope='This text is hopeful.',
+            trust='This text is trusting.',
+            joy='This text is joyful.',
+    )
+    return detect_emotions_raw(text, hypotheses, report_threshold)
 
-for label, h in hypotheses.items():
-    x = prob(premise, h)
-    if x > 80:
-        print(f'{label:16}: {x:>8.2f}%')
 
+def detect_emotions_raw(premise: str, hypotheses: dict, report_threshold: float = 80.0) -> list:
+    output = []
+    for label, h in hypotheses.items():
+        x = prob(premise, h)
+        if x > report_threshold:
+            output.append(dict(
+                label=label,
+                score=x,
+            ))
+
+    return output

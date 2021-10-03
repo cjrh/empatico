@@ -19,7 +19,8 @@ classifiers = [
 dependencies = [
     "wheel", 
     "transformers[torch]", 
-    "fastapi"
+    "fastapi",
+    "uvicorn[standard]",
 ]
 requires-python = ">=3.9"
 licence = {file = "LICENCE"}
