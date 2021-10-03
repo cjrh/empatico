@@ -4,6 +4,8 @@ empatico
 Emotion detection microservice based on natural language inference
 
 .. image:: https://raw.githubusercontent.com/cjrh/empatico/main/clown.jpg
+    :alt: Image of a clown in black and white
+    :align: center
 
 .. contents:: Table of Contents
 
