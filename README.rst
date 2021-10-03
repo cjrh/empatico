@@ -288,7 +288,7 @@ expressed as labels):
       }
     ]
 
-It is really interested that while the "overall" positive score is 0.7% and
+It is really interesting that while the "overall" positive score is 0.7% and
 the "overall" negative score is 98%, we do still see a "mixed" score
 of 98.8%. This can be interpreted as "while there were both positive and
 negative sentiments expressed, the negative outweighs the positive".
