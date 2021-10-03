@@ -12,9 +12,9 @@ Launch the model (dev mode, auto-reloading):
 
     $ python3 -m venv .venv
     $ source ./venv/bin/activate
-    $ pip install flit
-    $ flit install --symlink
-    $ uvicorn empatico:app --reload
+    (.venv) $ pip install flit
+    (.venv) $ flit install --symlink
+    (.venv) $ uvicorn empatico:app --reload
     INFO:     Will watch for changes in these directories: ['/home/caleb/Documents/repos/empatico']
     INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
     INFO:     Started reloader process [303534] using watchgod
@@ -24,7 +24,10 @@ text:
 
 .. code-block:: bash
 
-    $ curl --request POST --header "Content-Type: application/json" --data '{"text": "I love when you speak to me rudely"}' http://127.0.0.1:8000/emotions | jq
+    $ curl --request POST \
+        --header "Content-Type: application/json" \
+        --data '{"text": "I love when you speak to me rudely"}' \
+        http://127.0.0.1:8000/emotions | jq
     [
       {
         "label": "mixed",
@@ -40,7 +43,7 @@ text:
       }
     ]
 
-Note that it can identify sarcasm! Here's another one:
+Wow, a label for sarcasm! Here's another one:
 
 .. code-block:: bash
 
@@ -87,7 +90,7 @@ Note that it can identify sarcasm! Here's another one:
       }
     ]
 
-Again sarcasm is detected, with a few other comorbid emotions. Another test of 
+Again sarcasm is detected (99.7% probability), with a few other comorbid emotions. Another test of 
 the sarcasm detector:
 
 .. code-block:: bash
@@ -180,6 +183,108 @@ By default, a rich array of emotional labels is provided:
         "score": 83.91632437705994
       }
     ]
+
+Default labels
+--------------
+
+You can also control the cutoff threshold for reporting. Here we set it to zero,
+which disables the filter. This shows all the default hypotheses (which are 
+expressed as labels):
+
+.. code-block:: bash
+
+    $ curl --request POST \
+        --header "Content-Type: application/json" \
+        --data '{"text": "The kids were so looking forward to the trip but the rain washed away all our plans.", \
+            "report_threshold": 0.0}' \
+        http://127.0.0.1:8000/emotions | jq
+    [
+      {
+        "label": "positive",
+        "score": 0.7067840080708265
+      },
+      {
+        "label": "negative",
+        "score": 98.16489219665527
+      },
+      {
+        "label": "mixed",
+        "score": 98.80892634391785
+      },
+      {
+        "label": "satisfied",
+        "score": 0.7183659821748734
+      },
+      {
+        "label": "neutral1",
+        "score": 0.5342578981071711
+      },
+      {
+        "label": "neutral2",
+        "score": 0.034320083796046674
+      },
+      {
+        "label": "neutral3",
+        "score": 4.02584969997406
+      },
+      {
+        "label": "factual",
+        "score": 6.705068796873093
+      },
+      {
+        "label": "anger",
+        "score": 33.71554911136627
+      },
+      {
+        "label": "sadness",
+        "score": 98.14655780792236
+      },
+      {
+        "label": "disappointment",
+        "score": 99.36606287956238
+      },
+      {
+        "label": "bitter",
+        "score": 61.47879958152771
+      },
+      {
+        "label": "sarcastic",
+        "score": 31.848391890525818
+      },
+      {
+        "label": "helpful",
+        "score": 71.62957191467285
+      },
+      {
+        "label": "fear",
+        "score": 17.39620268344879
+      },
+      {
+        "label": "disgust",
+        "score": 4.311040416359901
+      },
+      {
+        "label": "surprise",
+        "score": 90.2463436126709
+      },
+      {
+        "label": "hope",
+        "score": 0.21583051420748234
+      },
+      {
+        "label": "trust",
+        "score": 37.46950924396515
+      },
+      {
+        "label": "joy",
+        "score": 0.47363536432385445
+      }
+    ]
+
+It is really interested that while the "overall" positive score is 0.7% and
+the "overall" negative score is 98%, we do still see a "mixed" score
+of 98.8%. This can be interpreted as "while there were both positive and
+negative sentiments expressed, the negative outweighs the positive".
 
 Customizable hypotheses
 -----------------------
