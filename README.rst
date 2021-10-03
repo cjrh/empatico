@@ -182,7 +182,7 @@ By default, a rich array of emotional labels is provided:
     ]
 
 Customizable hypotheses
-^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------
 
 You can also provide your own hypotheses, which means you can generalise this
 to many difference kinds of classifications:
@@ -221,6 +221,16 @@ to many difference kinds of classifications:
       }
     ]
 
+Background
+----------
+
+The underlying technique for using natural language inference for classification
+was described by Joe Davison here: 
+
+https://joeddav.github.io/blog/2020/05/29/ZSL.html
+
+The model being used in the code is 
+`facebook/bart-large-mnli <https://huggingface.co/facebook/bart-large-mnli>`_.
 
 Running the server in dev
 -------------------------
