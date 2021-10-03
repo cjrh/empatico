@@ -3,6 +3,9 @@ empatico
 
 Emotion detection microservice based on natural language inference
 
+.. contents:: Table of Contents
+
+
 Demo
 ----
 
