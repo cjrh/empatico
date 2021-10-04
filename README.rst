@@ -19,6 +19,7 @@ Launch the model (dev mode, auto-reloading):
 
     $ python3 -m venv .venv
     $ source ./venv/bin/activate
+    (.venv) $ pip install -r requirements.txt
     (.venv) $ pip install flit
     (.venv) $ flit install --symlink
     (.venv) $ uvicorn empatico:app --reload
