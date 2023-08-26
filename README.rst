@@ -6,7 +6,7 @@ Emotion detection microservice based on natural language inference
 .. raw:: html
 
     <p align="center" width="100%">
-        <img width="66%" src="https://raw.githubusercontent.com/cjrh/empatico/main/clown.jpg">
+        <img width="100%" src="https://raw.githubusercontent.com/cjrh/empatico/main/clown.jpg">
     </p>
 
 
