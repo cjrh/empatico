@@ -18,4 +18,4 @@ torch==1.13.1
 tqdm==4.66.3
 transformers==4.38.0
 typing-extensions==3.10.0.2
-urllib3==1.26.18
+urllib3==1.26.19
