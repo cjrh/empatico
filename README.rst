@@ -20,12 +20,8 @@ Launch the model (dev mode, auto-reloading):
 
 .. code-block:: bash
 
-    $ python3 -m venv .venv
-    $ source ./venv/bin/activate
-    (.venv) $ pip install -r requirements.txt
-    (.venv) $ pip install flit
-    (.venv) $ flit install --symlink
-    (.venv) $ uvicorn empatico:app --reload
+    $ uv sync
+    $ uv run uvicorn empatico:app --reload
     INFO:     Will watch for changes in these directories: ['/home/caleb/Documents/repos/empatico']
     INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
     INFO:     Started reloader process [303534] using watchgod
@@ -360,5 +356,5 @@ Running the server in dev
 
 .. code-block:: bash
 
-    $ uvicorn empatico:app --reload
+    $ uv run uvicorn empatico:app --reload
 

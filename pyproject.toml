@@ -8,24 +8,26 @@ authors = [
     {name = "Caleb Hattingh", email = "caleb.hattingh@gmail.com"}
 ]
 readme = "README.rst"
-home-page = "https://github.com/cjrh/empatico"
 classifiers = [
     "License :: OSI Approved :: Apache Software License",
     "Natural Language :: English",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.13",
     "Operating System :: OS Independent"
-    ]
+]
 dependencies = [
-    "wheel", 
-    "transformers[torch]", 
+    "transformers[torch]",
     "fastapi",
     "uvicorn[standard]",
 ]
-requires-python = ">=3.9"
-licence = {file = "LICENCE"}
+requires-python = ">=3.13"
+license = {file = "LICENSE"}
 keywords = ["nlp", "natural language", "sentiment analysis", "emotion detection"]
-dynamic = ['version', 'description']
+dynamic = ["version", "description"]
+
+[project.urls]
+Homepage = "https://github.com/cjrh/empatico"
+Repository = "https://github.com/cjrh/empatico"
 
 [project.optional-dependencies]
 test = [
